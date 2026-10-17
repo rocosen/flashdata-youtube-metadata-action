@@ -1,0 +1,21 @@
+{
+  "name": "flashdata-youtube-metadata-action",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test test/*.test.mjs",
+    "check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@actions/core": "1.11.1",
+    "zod": "4.1.8"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "esbuild": "0.25.12",
+    "typescript": "6.0.3",
+    "yaml": "2.8.1"
+  }
+}

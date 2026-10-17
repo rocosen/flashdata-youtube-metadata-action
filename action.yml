@@ -1,0 +1,35 @@
+name: YouTube Metadata and Chapters - FlashData
+description: Save video metadata and any available chapters before selecting
+  content for a knowledge-base pipeline.
+author: FlashData
+branding:
+  icon: search
+  color: blue
+inputs:
+  api-key:
+    description: FlashData API Key. Pass secrets.FLASHDATA_API_KEY; requests use
+      paid Credits.
+    required: true
+  video-id:
+    description: 11-character YouTube video ID.
+    required: true
+  options-json:
+    description: Optional JSON object with only source-specific options listed in
+      the README. Never include credentials here.
+    required: false
+outputs:
+  artifact-directory:
+    description: Absolute directory with response.json, records.jsonl and manifest.json.
+  results-file:
+    description: Absolute path to the original response JSON (sanitized lifecycle
+      fields for download jobs).
+  records-file:
+    description: Absolute path to JSONL records for downstream steps. Empty file for
+      an empty result.
+  result-count:
+    description: Number of exported records; not the requested result count.
+  source:
+    description: The fixed FlashData source used by this action.
+runs:
+  using: node24
+  main: dist/index.cjs

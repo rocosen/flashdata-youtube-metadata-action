@@ -1,0 +1,23 @@
+name: YouTube Metadata and Chapters - FlashData
+on:
+  workflow_dispatch: {}
+permissions:
+  contents: read
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Save video metadata and any available chapters before selecting content
+          for a knowledge-base pipeline.
+        id: data
+        uses: rocosen/flashdata-youtube-metadata-action@v0.1.0
+        with:
+          api-key: ${{ secrets.FLASHDATA_API_KEY }}
+          video-id: dQw4w9WgXcQ
+          options-json: '{"include_formats":false,"include_chapters":true}'
+      - name: Save data for the next pipeline stage
+        uses: actions/upload-artifact@v4
+        with:
+          name: youtube-metadata
+          path: ${{ steps.data.outputs.artifact-directory }}
+          retention-days: 7
